@@ -1,0 +1,115 @@
+<%
+    const formatDate = formatter.formatDate
+    const formatNumber = formatter.formatDate
+%>
+<html>
+<head>
+    <title>POC of a Dollar cost averaging simulation of stock webapp</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/termsAndConditions.css">
+</head>
+<body>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+    <h5 class="my-0 mr-md-auto font-weight-normal">Dollar cost averaging calculations</h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="#">Features</a>
+        <a class="p-2 text-dark" href="#">Enterprise</a>
+        <a class="p-2 text-dark" href="#">Support</a>
+        <a class="p-2 text-dark" href="#">Pricing</a>
+    </nav>
+    <% if (!user) { %>
+        <a class="btn btn-outline-primary" href="/auth/google">Signup or Login</a>
+    <% } else { %>
+        <a class="btn btn-outline-primary" href="/auth/logout">Logout</a>
+    <% } %>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="symbollist">
+                <h4>Your stock</h4>
+                <div class="container">
+                    <!-- make ejs list of all symbols -->
+                    <% for (let symbol of symbols) { %>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <a href="<%- `/${symbol}?${search}` %>"><%- `${symbol}` %></a>
+                            </div>
+                            <div>
+                                <span class="remove delete-btn" data-symbol="<%- `${symbol}` %>"></span>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+                <!--Make sure the form has the autocomplete function switched off:-->
+                <h4 style="padding-top:30px;">Search a stock</h4>
+                <form id="add-symbol-form" autocomplete="off" action="/add" >
+                    <div class="autocomplete">
+                        <input id="autocomplete-input-symbol" style="padding-top:10px;" type="text" name="symbol" placeholder="e.g. GOOG">
+                    </div>
+					<input id="addSymbol"  class="btn-sm"  type="submit" value="add to your list"  style="
+						border-right-width: 1px;
+						margin-top: 5px;
+						margin-right: 7px;
+					">
+                </form>
+                <div class="creditsremaining">
+                    <span>Remaining credits: <%- credits %></span>
+                    <% if (outOfCredits) { %>
+                        <span>Out of credits</span><br>
+                        <span>Buy new ones <a href="/buycredits">now!</a></span>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div id="description">
+            </div>
+            <div>
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <form class="investment-form">
+                <div class="form-group">
+                    <label for="term">Investment Term:</label>
+                    <select id="term" name="term">
+                        <option value="weekly" selected>Weekly</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Investment Amount:</label>
+                    <input type="number" id="amount" name="amount" value="30">
+                </div>
+                <div class="form-group">
+                    <label for="currency">Currency:</label>
+                    <select id="currency" name="currency">
+                        <option value="usd" selected>USD</option>
+                        <option value="eur">EUR</option>
+                        <option value="gbp">GBP</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="start">Start Date:</label>
+                    <input type="date" id="start" name="start" value="2014-08-05">
+                </div>
+                <div class="form-group">
+                    <label for="length">Investment Length:</label>
+                    <input type="number" id="length" name="length" value="400">
+                </div>
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include('./termsAndConditions'); %>
+<%- include('./flashMessages'); %>
+</body>
+<script> const outOfCredits = <%- outOfCredits %> </script>
+<%- include('./scripts'); %>
+</html>
