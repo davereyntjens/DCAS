@@ -1,4 +1,4 @@
-# DCAC: POC of a Dollar cost averaging simulation of stock webapp
+# DCAS: (POC) Dollar cost averaging simulation of stock webapp
 
 # Install
 

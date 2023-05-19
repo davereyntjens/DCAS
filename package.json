@@ -3,10 +3,6 @@
   "version": "0.0.5",
   "private": true,
   "description": "Dollar cost averaging simulation of stock",
-  "author": {
-	"name": "",
-    "email": "davereyntjens@gmail.com"
-  },
   "keywords": [
     "dollar cost averaging"
   ],
@@ -47,12 +43,6 @@
     "type": "git",
     "url": "git@github.com:davereyntjens/DCAS.git"
   },
-  "maintainers": [
-    {
-	  "name": "",
-      "email": "davereyntjens@gmail.com"
-    }
-  ],
   "devDependencies": {
     "debug": "^4.3.2",
     "mocha": "^9.0.3"

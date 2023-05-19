@@ -1,0 +1,8 @@
+{
+  "aws.ses": {
+    "accesskey": "",
+    "secretaccesskey": "",
+    "source_email_": "test@gmail.com",
+    "source_email": "noreply@apptalk.org"
+  }
+}
