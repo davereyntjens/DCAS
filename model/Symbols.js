@@ -1,24 +1,3 @@
-// What is the model... ?
-// A user has:
-// roiQueries
-// symbols
-
-// Finding uncorrelated symbols that all go up together ...
-// Find symbols who's correlation over 1 year periods is low ...?
-// Yet all perform well over a long period of time ...
-
-// once you where logged in, immediately redirect to the login page
-// roi(symbol)
-// add symbols and see the RIO fo the symbol
-
-// The anonymous user can add and remove symbols
-// The signed-in user can add and remove symbols
-// when the session does not yet have a symbols object, then a symbols is created
-// When the anonymous user signs in, and he does not yet have a symbols object,
-// then the symbols object is taken from the session
-// When a singed in user signs out, then he gets back the symbols object of the session
-// Axiom: When the user is signed in, symbols and notes are of the signed in user
-// Symbols model
 
 class Symbols {
 
